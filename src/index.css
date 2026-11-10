@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  body {
+    background-color: #fbfbf9;
+    color: #1f2735;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, .font-serif {
+    font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.015em;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f3ee;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #dfc17b, #c6a45c, #9e7d36);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8b6b29;
+}
+
+/* 3D Gold Typography with Animated Gradient Shimmer */
+.text-3d-gold {
+  background: linear-gradient(135deg, #f6dfa1 0%, #d4b26f 25%, #c6a45c 50%, #9e7d36 75%, #76591e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 5px rgba(198, 164, 92, 0.4));
+}
+
+.text-3d-title {
+  background: linear-gradient(180deg, #142b49 0%, #0c1a2d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 10px rgba(20, 43, 73, 0.16));
+}
+
+/* =========================================================
+   ULTRA-PREMIUM 3D GOLD GRADIENT BUTTONS
+========================================================= */
+.btn-premium-gold {
+  background: linear-gradient(135deg, #fcedc2 0%, #e2c582 20%, #c6a45c 50%, #b28e46 75%, #8c6a28 100%);
+  color: #142b49;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 
+    0 4px 14px rgba(198, 164, 92, 0.45),
+    0 10px 24px -4px rgba(20, 43, 73, 0.16),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95),
+    inset 0 -2px 4px rgba(118, 89, 30, 0.4);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.btn-premium-gold:hover {
+  transform: translateY(-2.5px) scale(1.02);
+  background: linear-gradient(135deg, #fff2cc 0%, #ecd08d 20%, #d4b068 50%, #bf9b52 75%, #997530 100%);
+  box-shadow: 
+    0 8px 26px rgba(198, 164, 92, 0.6),
+    0 14px 30px -4px rgba(20, 43, 73, 0.22),
+    inset 0 1px 2px rgba(255, 255, 255, 1);
+}
+
+.btn-premium-gold:active {
+  transform: translateY(1px) scale(0.99);
+  box-shadow: 
+    0 2px 8px rgba(198, 164, 92, 0.4),
+    inset 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Secondary Luxury White Button */
+.btn-premium-white {
+  background: #ffffff;
+  color: #142b49;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 0.85rem;
+  border: 2px solid rgba(198, 164, 92, 0.6);
+  box-shadow: 
+    0 4px 14px rgba(20, 43, 73, 0.06),
+    inset 0 1px 0 #ffffff;
+  transition: all 0.25s ease;
+}
+
+.btn-premium-white:hover {
+  transform: translateY(-2px);
+  border-color: #c6a45c;
+  background: #fbfaf7;
+  color: #9e7d36;
+  box-shadow: 
+    0 8px 22px rgba(198, 164, 92, 0.25),
+    0 2px 6px rgba(20, 43, 73, 0.08);
+}
+
+/* =========================================================
+   ULTRA-PREMIUM 3D LUXURY CARDS WITH GOLD ACCENT RIM
+========================================================= */
+.card-3d {
+  background: #ffffff;
+  border: 1px solid rgba(198, 164, 92, 0.35);
+  border-radius: 1.4rem;
+  box-shadow: 
+    0 4px 12px rgba(20, 43, 73, 0.04),
+    0 14px 28px -4px rgba(20, 43, 73, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  transition: all 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.card-3d:hover {
+  transform: translateY(-7px) scale(1.015);
+  border-color: rgba(198, 164, 92, 0.85);
+  box-shadow: 
+    0 22px 45px -5px rgba(20, 43, 73, 0.14),
+    0 12px 28px rgba(198, 164, 92, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* Mobile-optimised touch feedback */
+@media (max-width: 640px) {
+  .card-3d:hover {
+    transform: translateY(-3px) scale(1.005);
+  }
+}
+
+/* Floating animation */
+@keyframes float3D {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-7px); }
+}
+
+.animate-float-3d {
+  animation: float3D 6s ease-in-out infinite;
+}
