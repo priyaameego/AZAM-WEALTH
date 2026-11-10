@@ -191,12 +191,12 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             
-            {/* LOGO */}
+            {/* LOGO - Full original branding matching client logo */}
             <Link to="/" className="flex items-center shrink-0 group">
               <img
                 src={BRAND_INFO.logoUrl}
                 alt="AZAM WEALTH"
-                className="h-12 sm:h-14 md:h-16 w-auto object-contain transition-all duration-300 group-hover:scale-105 filter drop-shadow-[0_2px_6px_rgba(20,43,73,0.12)]"
+                className="h-11 sm:h-13 md:h-15 w-auto object-contain transition-all duration-300 group-hover:scale-102"
               />
             </Link>
 

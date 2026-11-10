@@ -140,12 +140,116 @@
   }
 }
 
-/* Floating animation */
+/* =========================================================
+   MAWAI & ZISANTECH INSPIRED PREMIUM ANIMATION SYSTEM
+========================================================= */
+
+/* Continuous Floating Animation */
 @keyframes float3D {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-7px); }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(0.4deg); }
 }
 
 .animate-float-3d {
   animation: float3D 6s ease-in-out infinite;
+}
+
+/* Luxury Light Shimmer Swipe (Mawai & ZisanTech Card Highlight) */
+@keyframes lightShimmer {
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  50%, 100% { transform: translateX(250%) skewX(-20deg); }
+}
+
+.shimmer-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 100%
+  );
+  transform: translateX(-150%) skewX(-20deg);
+  pointer-events: none;
+  z-index: 10;
+  transition: transform 0.8s ease;
+}
+
+.shimmer-card:hover::before {
+  animation: lightShimmer 1.4s ease-out;
+}
+
+/* ZisanTech-Style Interactive Glass Card */
+.zisan-card {
+  background: #ffffff;
+  border: 1px solid rgba(198, 164, 92, 0.28);
+  border-radius: 1.25rem;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.zisan-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(198, 164, 92, 0.9);
+  box-shadow: 
+    0 20px 45px -8px rgba(20, 43, 73, 0.14),
+    0 10px 24px rgba(198, 164, 92, 0.22);
+}
+
+/* Image Zoom & Pan on Card Hover (Mawai style) */
+.zisan-image-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.zisan-image-wrapper img {
+  transition: transform 0.75s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s ease;
+}
+
+.zisan-card:hover .zisan-image-wrapper img,
+.group:hover .zisan-image-wrapper img {
+  transform: scale(1.09) rotate(0.5deg);
+  filter: brightness(1.02);
+}
+
+/* Mawai-Style Accent Border Top Reveal */
+.mawai-border-reveal {
+  position: relative;
+}
+
+.mawai-border-reveal::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #dfc17b, #c6a45c, #9e7d36);
+  transition: width 0.4s ease;
+  border-radius: 9999px;
+}
+
+.mawai-border-reveal:hover::after,
+.group:hover .mawai-border-reveal::after {
+  width: 100%;
+}
+
+/* Pulse Glow Keyframe */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.75; transform: scale(1.06); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
 }

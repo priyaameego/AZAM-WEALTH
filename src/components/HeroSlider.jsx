@@ -96,8 +96,13 @@ export default function HeroSlider() {
               </span>
             </div>
 
-            {/* Main Heading with 3D Effect & Gold Highlights */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-black text-[#142b49] tracking-tight leading-[1.12]">
+            {/* Main Heading with 3D Effect & Gold Highlights with Zisan/Mawai Stagger Animation */}
+            <motion.h1
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-black text-[#142b49] tracking-tight leading-[1.12]"
+            >
               {slide.heading.includes(slide.highlightWord) ? (
                 <>
                   {slide.heading.replace(slide.highlightWord, '')}
@@ -108,21 +113,31 @@ export default function HeroSlider() {
               ) : (
                 slide.heading
               )}
-            </h1>
+            </motion.h1>
 
             {/* Description */}
-            <p className="text-base sm:text-xl text-slate-700 leading-relaxed font-normal max-w-2xl bg-white/60 sm:bg-transparent backdrop-blur-xs sm:backdrop-blur-none p-2 sm:p-0 rounded-lg">
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              className="text-base sm:text-xl text-slate-700 leading-relaxed font-normal max-w-2xl bg-white/60 sm:bg-transparent backdrop-blur-xs sm:backdrop-blur-none p-2 sm:p-0 rounded-lg"
+            >
               {slide.description}
-            </p>
+            </motion.p>
 
             {/* CTAs */}
-            <div className="pt-4 flex flex-wrap gap-4 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="pt-4 flex flex-wrap gap-4 items-center"
+            >
               <Link
                 to={slide.ctaLink && slide.ctaLink.startsWith('#') ? (slide.ctaLink === '#investment-solutions' ? '/investment-solutions' : (slide.ctaLink === '#contact' ? '/contact' : '/services')) : '/services'}
-                className="btn-premium-gold px-9 py-4 text-xs sm:text-sm flex items-center space-x-2.5 cursor-pointer shadow-xl"
+                className="btn-premium-gold px-9 py-4 text-xs sm:text-sm flex items-center space-x-2.5 cursor-pointer shadow-xl shimmer-card"
               >
                 <span>{slide.ctaPrimary}</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
 
               <Link
@@ -131,7 +146,7 @@ export default function HeroSlider() {
               >
                 <span>{slide.ctaSecondary}</span>
               </Link>
-            </div>
+            </motion.div>
 
             {/* Trust Highlights */}
             <div className="pt-8 flex flex-wrap items-center gap-6 text-xs text-slate-600 border-t border-slate-300/60">

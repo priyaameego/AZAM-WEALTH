@@ -35,25 +35,12 @@ export default function Footer({ onSelectService }) {
           
           {/* Brand Info (4 Cols) */}
           <div className="lg:col-span-4 space-y-5">
-            <Link to="/" className="flex items-center space-x-3.5 group">
-              <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-[#c6a45c]/70 p-1 bg-white shadow-md shrink-0 group-hover:scale-105 transition-transform flex items-center justify-center">
-                <img
-                  src={BRAND_INFO.logoUrl}
-                  alt="AZAM WEALTH Official Logo"
-                  className="w-full h-full object-contain rounded-xl"
-                />
-              </div>
-              <div>
-                <span className="text-2xl font-serif font-black tracking-wider text-[#142b49]">
-                  AZAM <span className="text-3d-gold">WEALTH</span>
-                </span>
-                <p className="text-[10px] tracking-widest text-[#8e6820] font-bold uppercase">
-                  {BRAND_INFO.tagline}
-                </p>
-                <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">
-                  Founder & Proprietor: {BRAND_INFO.founder}
-                </p>
-              </div>
+            <Link to="/" className="inline-block group">
+              <img
+                src={BRAND_INFO.logoUrl}
+                alt="AZAM WEALTH Official Logo"
+                className="h-14 sm:h-16 w-auto object-contain transition-transform group-hover:scale-102"
+              />
             </Link>
 
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">

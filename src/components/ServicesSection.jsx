@@ -78,21 +78,21 @@ export default function ServicesSection({ onSelectServiceForConsultation }) {
             return (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
-                className="group relative rounded-2xl bg-white border border-[#c6a45c]/25 hover:border-[#c6a45c] transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-[0_15px_30px_rgba(20,43,73,0.08)] hover:-translate-y-1.5"
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: (index % 3) * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                className="group relative rounded-2xl bg-white border border-[#c6a45c]/30 hover:border-[#c6a45c] transition-all duration-400 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-[0_20px_45px_rgba(20,43,73,0.12)] hover:-translate-y-2 shimmer-card"
               >
-                {/* Image Header with Light Overlay */}
-                <div className="relative h-48 w-full overflow-hidden bg-slate-100">
+                {/* Image Header with Light Overlay & Mawai/ZisanTech Zoom Effect */}
+                <div className="relative h-48 w-full zisan-image-wrapper bg-slate-100">
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-500 filter brightness-[0.98]"
+                    className="w-full h-full object-cover object-center filter brightness-[0.98]"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent transition-opacity group-hover:opacity-80" />
                   
                   {/* Category Pill */}
                   <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase bg-white/95 text-[#142b49] border border-[#c6a45c]/40 backdrop-blur-md shadow-sm">
