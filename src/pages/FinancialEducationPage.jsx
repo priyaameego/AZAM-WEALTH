@@ -1,12 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Clock, ArrowRight, X, Sparkles, CheckCircle2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { EDUCATION_ARTICLES } from '../data/content';
 import PremiumCtaBanner from '../components/PremiumCtaBanner';
 
+const ARTICLE_MAP = {
+  "investment-basics": "edu-1",
+  "mutual-funds": "edu-2",
+  "stock-market": "edu-3",
+  "investor-awareness": "edu-4",
+  "risk-management": "edu-5",
+  "financial-planning": "edu-6"
+};
+
 export default function FinancialEducationPage() {
   const [selectedArticle, setSelectedArticle] = useState(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const hash = location.hash.replace('#', '');
+      const targetId = ARTICLE_MAP[hash] || hash;
+      const el = document.getElementById(targetId);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 120);
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [location]);
 
   return (
     <div className="pt-28 sm:pt-32 bg-[#fbfbf9] text-[#202733] min-h-screen">
@@ -38,12 +63,13 @@ export default function FinancialEducationPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {EDUCATION_ARTICLES.map((article, index) => (
             <motion.article
+              id={article.id}
               key={article.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: (index % 3) * 0.08 }}
-              className="card-3d bg-white p-7 flex flex-col justify-between group"
+              className="card-3d bg-white p-7 flex flex-col justify-between group scroll-mt-36"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between text-xs">
@@ -74,7 +100,7 @@ export default function FinancialEducationPage() {
                 <span className="text-[11px] text-slate-400 font-medium">{article.date}</span>
                 <button
                   onClick={() => setSelectedArticle(article)}
-                  className="btn-3d-white px-4 py-2 text-xs uppercase tracking-wider font-bold flex items-center space-x-1.5 cursor-pointer"
+                  className="btn-premium-white px-4 py-2 text-xs uppercase tracking-wider font-bold flex items-center space-x-1.5 cursor-pointer shadow-sm"
                 >
                   <span>Read Article</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -134,7 +160,7 @@ export default function FinancialEducationPage() {
               </button>
               <Link
                 to="/contact"
-                className="btn-3d-gold px-6 py-2.5 text-xs uppercase tracking-wider font-bold cursor-pointer"
+                className="btn-premium-gold px-6 py-2.5 text-xs uppercase tracking-wider font-bold cursor-pointer"
               >
                 Discuss This With Our Advisor
               </Link>
@@ -149,4 +175,3 @@ export default function FinancialEducationPage() {
     </div>
   );
 }
-

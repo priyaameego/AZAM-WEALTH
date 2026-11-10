@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { BarChart3, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { INVESTMENT_SOLUTIONS } from '../data/content';
 import FinancialCalculators from '../components/FinancialCalculators';
 import PremiumCtaBanner from '../components/PremiumCtaBanner';
 
+const SOLUTION_MAP = {
+  "mutual-funds": "sip-mf",
+  "sip-swp-sif": "sip-mf",
+  "pms": "pms",
+  "fixed-deposits": "fd",
+  "stock-market": "stock-market",
+  "demat-trading": "stock-market",
+  "algo-trading": "algo-trading"
+};
+
 export default function InvestmentSolutionsPage({ onSelectSolution }) {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const hash = location.hash.replace('#', '');
+      const targetId = SOLUTION_MAP[hash] || hash;
+      const el = document.getElementById(targetId);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 120);
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [location]);
 
   const handleAction = (title) => {
     if (onSelectSolution) onSelectSolution(title);
@@ -44,12 +70,13 @@ export default function InvestmentSolutionsPage({ onSelectSolution }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {INVESTMENT_SOLUTIONS.map((sol, index) => (
             <motion.div
+              id={sol.id}
               key={sol.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: (index % 3) * 0.08 }}
-              className="card-3d bg-white overflow-hidden flex flex-col justify-between group"
+              className="card-3d bg-white overflow-hidden flex flex-col justify-between group scroll-mt-36"
             >
               {/* Image banner */}
               <div className="relative h-48 overflow-hidden bg-slate-100">
@@ -87,7 +114,7 @@ export default function InvestmentSolutionsPage({ onSelectSolution }) {
 
                 <button
                   onClick={() => handleAction(sol.title)}
-                  className="btn-3d-gold w-full py-3 text-xs uppercase tracking-wider font-bold flex items-center justify-center space-x-2 cursor-pointer"
+                  className="btn-premium-gold w-full py-3 text-xs uppercase tracking-wider font-bold flex items-center justify-center space-x-2 cursor-pointer shadow-md"
                 >
                   <span>{sol.actionText}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -120,4 +147,3 @@ export default function InvestmentSolutionsPage({ onSelectSolution }) {
     </div>
   );
 }
-

@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Target, HeartHandshake, Laptop, Award, ArrowRight, CheckCircle2, Eye, Compass, Quote } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { BRAND_INFO, ABOUT_CONTENT, FOUNDER_INFO } from '../data/content';
 import FounderSection from '../components/FounderSection';
 import ComplianceSection from '../components/ComplianceSection';
 import PremiumCtaBanner from '../components/PremiumCtaBanner';
 
 export default function AboutPage() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [location]);
+
   return (
     <div className="pt-28 sm:pt-32 bg-[#fbfbf9] text-[#202733] min-h-screen">
       
@@ -34,7 +50,7 @@ export default function AboutPage() {
       </section>
 
       {/* 2. Comprehensive About Azam Wealth Content */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="overview" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-36">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           <div className="lg:col-span-6 relative">
@@ -89,7 +105,7 @@ export default function AboutPage() {
       </section>
 
       {/* 3. Vision & Mission Cards */}
-      <section className="py-20 bg-white border-y border-[#c6a45c]/20">
+      <section id="vision-mission" className="py-20 bg-white border-y border-[#c6a45c]/20 scroll-mt-36">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             
@@ -139,7 +155,7 @@ export default function AboutPage() {
       </section>
 
       {/* 4. Core Values Grid (7 Values) */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="core-values" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-36">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
           <span className="text-xs uppercase tracking-widest font-extrabold text-[#c6a45c]">
             Foundational Tenets
@@ -169,10 +185,14 @@ export default function AboutPage() {
       </section>
 
       {/* 5. Dedicated Founder Section (Farhan Azam + azam.jpeg) */}
-      <FounderSection />
+      <div id="founder" className="scroll-mt-36">
+        <FounderSection />
+      </div>
 
       {/* 6. Government Registrations & Quality Management */}
-      <ComplianceSection />
+      <div id="registrations" className="scroll-mt-36">
+        <ComplianceSection />
+      </div>
 
       {/* 7. Our Commitment Banner */}
       <section className="py-16 bg-[#f8f7f3] border-t border-[#c6a45c]/30 text-center">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   TrendingUp,
@@ -12,7 +12,7 @@ import {
   Search,
   Filter
 } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { SERVICE_CATEGORIES } from '../data/content';
 import PremiumCtaBanner from '../components/PremiumCtaBanner';
 
@@ -24,10 +24,36 @@ const CATEGORY_ICONS = {
   "Financial Education": GraduationCap
 };
 
+const CATEGORY_SLUGS = {
+  "investment-wealth": "Investment & Wealth Solutions",
+  "financial-market": "Financial Market Services",
+  "insurance-assistance": "Insurance & Financial Assistance",
+  "taxation-business": "Taxation & Business Services",
+  "financial-education": "Financial Education"
+};
+
 export default function ServicesPage({ onSelectService }) {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedServiceModal, setSelectedServiceModal] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const slug = location.hash.replace('#', '');
+      if (CATEGORY_SLUGS[slug]) {
+        setActiveCategory(CATEGORY_SLUGS[slug]);
+      }
+      const el = document.getElementById(slug);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 120);
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [location]);
 
   const handleEnquire = (title) => {
     if (onSelectService) onSelectService(title);
@@ -37,6 +63,14 @@ export default function ServicesPage({ onSelectService }) {
   const displayedCategories = activeCategory === 'All'
     ? SERVICE_CATEGORIES
     : SERVICE_CATEGORIES.filter(c => c.category === activeCategory);
+
+  const getSlug = (catName) => {
+    if (catName.includes("Investment & Wealth")) return "investment-wealth";
+    if (catName.includes("Financial Market")) return "financial-market";
+    if (catName.includes("Insurance")) return "insurance-assistance";
+    if (catName.includes("Taxation")) return "taxation-business";
+    return "financial-education";
+  };
 
   return (
     <div className="pt-28 sm:pt-32 bg-[#fbfbf9] text-[#202733] min-h-screen">
@@ -95,8 +129,9 @@ export default function ServicesPage({ onSelectService }) {
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {displayedCategories.map((sect, sIdx) => {
           const Icon = CATEGORY_ICONS[sect.category] || TrendingUp;
+          const slug = getSlug(sect.category);
           return (
-            <div key={sIdx} className="space-y-8">
+            <div id={slug} key={sIdx} className="space-y-8 scroll-mt-36">
               
               {/* Sector Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b-2 border-[#c6a45c]/30 gap-4">
