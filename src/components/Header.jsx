@@ -123,6 +123,16 @@ export default function Header() {
       ]
     },
     {
+      name: 'Gallery',
+      path: '/gallery',
+      hasDropdown: false
+    },
+    {
+      name: 'Social Media',
+      path: '/social-media',
+      hasDropdown: false
+    },
+    {
       name: 'Contact Us',
       path: '/contact',
       hasDropdown: false
@@ -181,27 +191,27 @@ export default function Header() {
         </div>
       </div>
 
-      {/* 2. MAIN NAVBAR with Clean, Minimalist, Premium Dropdowns (Without Icons) */}
+      {/* 2. MAIN NAVBAR with Original Premium Substantial Height */}
       <div
         ref={navContainerRef}
         className={`bg-white/98 backdrop-blur-md transition-all duration-300 border-b border-[#c6a45c]/30 ${
-          isScrolled ? 'py-2.5 shadow-md' : 'py-3 sm:py-3.5'
+          isScrolled ? 'py-2.5 shadow-md' : 'py-3.5 sm:py-4'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             
-            {/* LOGO - Full original branding matching client logo */}
-            <Link to="/" className="flex items-center shrink-0 group">
+            {/* LOGO - Full prominent space without being cropped, perfectly proportioned */}
+            <Link to="/" className="flex items-center shrink-0 group mr-4">
               <img
                 src={BRAND_INFO.logoUrl}
-                alt="AZAM WEALTH"
-                className="h-11 sm:h-13 md:h-15 w-auto object-contain transition-all duration-300 group-hover:scale-102"
+                alt="AZAM WEALTH - Growing Wealth, Building Futures"
+                className="h-13 sm:h-15 md:h-16 w-auto object-contain transition-all duration-300 group-hover:scale-102"
               />
             </Link>
 
-            {/* DESKTOP NAV WITH CLEAN PREMIUM DROPDOWNS (WITHOUT ICONS) */}
-            <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+            {/* DESKTOP NAV WITH CLEAN PREMIUM DROPDOWNS */}
+            <nav className="hidden lg:flex items-center space-x-5 xl:space-x-7">
               {navStructure.map((item) => (
                 <div
                   key={item.name}
@@ -209,31 +219,44 @@ export default function Header() {
                   onMouseEnter={() => item.hasDropdown && handleMouseEnter(item.name)}
                   onMouseLeave={() => item.hasDropdown && handleMouseLeave()}
                 >
-                  <div className="flex items-center space-x-1">
+                  {item.hasDropdown ? (
+                    <div
+                      onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
+                      className="flex items-center space-x-1.5 cursor-pointer group/link py-1"
+                    >
+                      <NavLink
+                        to={item.path}
+                        className={({ isActive }) =>
+                          `text-xs uppercase tracking-widest font-extrabold transition-all relative duration-200 whitespace-nowrap ${
+                            isActive && location.pathname === item.path
+                              ? 'text-[#c6a45c] after:content-[""] after:absolute after:-bottom-1.5 after:left-0 after:w-full after:h-[2.5px] after:bg-gradient-to-r after:from-[#dfc17b] after:to-[#c6a45c] after:rounded-full drop-shadow-[0_1px_2px_rgba(198,164,92,0.3)]'
+                              : 'text-[#142b49] hover:text-[#c6a45c]'
+                          }`
+                        }
+                      >
+                        {item.name}
+                      </NavLink>
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 text-[#142b49] group-hover/link:text-[#c6a45c] transition-transform duration-200 shrink-0 ${
+                          activeDropdown === item.name ? 'rotate-180 text-[#c6a45c]' : ''
+                        }`}
+                      />
+                    </div>
+                  ) : (
                     <NavLink
                       to={item.path}
-                      onClick={() => !item.hasDropdown && setActiveDropdown(null)}
+                      onClick={() => setActiveDropdown(null)}
                       className={({ isActive }) =>
-                        `text-xs uppercase tracking-widest font-extrabold transition-all relative py-1 duration-200 flex items-center space-x-1 ${
+                        `text-xs uppercase tracking-widest font-extrabold transition-all relative py-1 duration-200 whitespace-nowrap block ${
                           isActive && location.pathname === item.path
-                            ? 'text-[#c6a45c] after:content-[""] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-gradient-to-r after:from-[#dfc17b] after:to-[#c6a45c] after:rounded-full drop-shadow-[0_1px_2px_rgba(198,164,92,0.3)]'
+                            ? 'text-[#c6a45c] after:content-[""] after:absolute after:-bottom-1.5 after:left-0 after:w-full after:h-[2.5px] after:bg-gradient-to-r after:from-[#dfc17b] after:to-[#c6a45c] after:rounded-full drop-shadow-[0_1px_2px_rgba(198,164,92,0.3)]'
                             : 'text-[#142b49] hover:text-[#c6a45c]'
                         }`
                       }
                     >
-                      <span>{item.name}</span>
+                      {item.name}
                     </NavLink>
-                    {item.hasDropdown && (
-                      <button
-                        onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
-                        className="text-[#142b49] group-hover:text-[#c6a45c] focus:outline-none transition-transform duration-200 cursor-pointer"
-                        aria-label={`Toggle ${item.name} dropdown`}
-                        aria-expanded={activeDropdown === item.name}
-                      >
-                        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === item.name ? 'rotate-180 text-[#c6a45c]' : ''}`} />
-                      </button>
-                    )}
-                  </div>
+                  )}
 
                   {/* DESKTOP DROPDOWN MENUS: Clean, simple, premium, without icons */}
                   <AnimatePresence>

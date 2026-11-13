@@ -8,6 +8,8 @@ import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
 import InvestmentSolutionsPage from './pages/InvestmentSolutionsPage';
 import FinancialEducationPage from './pages/FinancialEducationPage';
+import GalleryPage from './pages/GalleryPage';
+import SocialMediaPage from './pages/SocialMediaPage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './components/NotFoundPage';
 
@@ -33,6 +35,8 @@ function AppContent() {
           <Route path="/services" element={<ServicesPage onSelectService={handleSelectService} />} />
           <Route path="/investment-solutions" element={<InvestmentSolutionsPage onSelectSolution={handleSelectService} />} />
           <Route path="/financial-education" element={<FinancialEducationPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/social-media" element={<SocialMediaPage />} />
           <Route path="/contact" element={<ContactPage prefilledService={selectedService} />} />
           <Route path="*" element={<NotFoundPage onGoHome={() => navigate('/')} />} />
         </Routes>

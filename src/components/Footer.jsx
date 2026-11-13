@@ -23,6 +23,8 @@ export default function Footer({ onSelectService }) {
     { name: 'Services', path: '/services' },
     { name: 'Investment Solutions', path: '/investment-solutions' },
     { name: 'Financial Education', path: '/financial-education' },
+    { name: 'Gallery', path: '/gallery' },
+    { name: 'Social Media', path: '/social-media' },
     { name: 'Contact Us', path: '/contact' },
   ];
 
@@ -35,11 +37,11 @@ export default function Footer({ onSelectService }) {
           
           {/* Brand Info (4 Cols) */}
           <div className="lg:col-span-4 space-y-5">
-            <Link to="/" className="inline-block group">
+            <Link to="/" className="inline-block group py-1">
               <img
                 src={BRAND_INFO.logoUrl}
                 alt="AZAM WEALTH Official Logo"
-                className="h-14 sm:h-16 w-auto object-contain transition-transform group-hover:scale-102"
+                className="h-16 sm:h-20 w-auto object-contain transition-transform group-hover:scale-102"
               />
             </Link>
 
